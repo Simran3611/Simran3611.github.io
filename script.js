@@ -109,6 +109,7 @@ function loop() {
   // check to see if ball collides with paddle. if they do change x velocity
   if (collides(ball, leftPaddle)) {
     ball.dx *= -1;
+    //checks to see if collided
 
     // move ball next to the paddle otherwise the collision will happen again
     // in the next frame
