@@ -1,4 +1,9 @@
 const canvas = document.getElementById('game');
+
+const scoreboard = document.getElementById('scoreboard')
+const player1Scores = document.getElementById('player1-score');
+const player2Scores = document.getElementById('player2-score')
+
 const context = canvas.getContext('2d');
 const grid = 15;
 const paddleHeight = grid * 5; // 80
@@ -17,6 +22,7 @@ const leftPaddle = {
   // paddle velocity
   dy: 0
 };
+
 const rightPaddle = {
   // start in the middle of the game on the right side
   x: canvas.width - grid * 3,
@@ -27,6 +33,7 @@ const rightPaddle = {
   // paddle velocity
   dy: 0
 };
+
 const ball = {
   // start in the middle of the game
   x: canvas.width / 2,
@@ -42,6 +49,13 @@ const ball = {
   dy: -ballSpeed
 };
 
+// const score = {
+//   player2: 0,
+//   player1: 0
+// }
+var player1 = 0;
+var player2 = 0;
+
 // check for collision between two objects using axis-aligned bounding box (AABB)
 // @see https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 function collides(obj1, obj2) {
@@ -49,6 +63,15 @@ function collides(obj1, obj2) {
          obj1.x + obj1.width > obj2.x &&
          obj1.y < obj2.y + obj2.height &&
          obj1.y + obj1.height > obj2.y;
+}
+
+// function writeScoreboard(){
+//   player1Scores.innerText = score.player1.toString();
+//   player2Scores.innerHTML = score.player2.toString();
+// }
+function changeScores(){
+  player1Scores.innerText = player1.toString();
+  player2Scores.innerHTML = player2.toString();
 }
 
 // game loop
@@ -76,7 +99,7 @@ function loop() {
   }
 
   // draw paddles
-  context.fillStyle = 'white';
+  context.fillStyle = 'red';
   context.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
   context.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
 
@@ -96,8 +119,16 @@ function loop() {
 
   // reset ball if it goes past paddle (but only if we haven't already done so)
   if ( (ball.x < 0 || ball.x > canvas.width) && !ball.resetting) {
+    //increments the player's scores based on the paddle hit
+    if (ball.x < 0){
+        player1++;
+        changeScores();
+    }
+    if (ball.x > canvas.width) {
+        player2++;
+        changeScores();
+    }
     ball.resetting = true;
-
     // give some time for the player to recover before launching the ball again
     setTimeout(() => {
       ball.resetting = false;
@@ -109,7 +140,6 @@ function loop() {
   // check to see if ball collides with paddle. if they do change x velocity
   if (collides(ball, leftPaddle)) {
     ball.dx *= -1;
-    //checks to see if collided
 
     // move ball next to the paddle otherwise the collision will happen again
     // in the next frame
@@ -127,7 +157,7 @@ function loop() {
   context.fillRect(ball.x, ball.y, ball.width, ball.height);
 
   // draw walls
-  context.fillStyle = 'lightgrey';
+  context.fillStyle = 'blue';
   context.fillRect(0, 0, canvas.width, grid);
   context.fillRect(0, canvas.height - grid, canvas.width, canvas.height);
 

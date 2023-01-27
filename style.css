@@ -1,11 +1,29 @@
 html, body {
-    height: 100%;
-    margin: 0;
-  }
+  height: 100%;
+  margin: 0;
+}
 
-  body {
-    background: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+body {
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreboardDisplay {
+  color: white;
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Courier New', Courier, monospace;
+  flex-basis: 50%;
+  text-align: center;
+}
+
+#scoreboard {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}

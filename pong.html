@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Basic Pong HTML Game</title>
-  <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<canvas width="750" height="585" id="game"></canvas>
-<script src="script.js"></script>
-</body>
+    <head>
+        <title>Basic Pong HTML Game</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="pong.css">
+
+        <!-- Imports custom font Lato -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+        </style>
+    </head>
+    <body>
+        <div id="scoreboard">
+            <h1 class="scoreboardDisplay" id="player2-score">0</h1>
+            <h1 class="scoreboardDisplay" id="player1-score">0</h1>
+        </div>
+        <canvas width="750" height="585" id="game"></canvas>
+        <script src="script.js"></script>
+    </body>
 </html>
