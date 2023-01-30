@@ -49,10 +49,6 @@ const ball = {
   dy: -ballSpeed
 };
 
-// const score = {
-//   player2: 0,
-//   player1: 0
-// }
 var player1 = 0;
 var player2 = 0;
 
@@ -65,10 +61,6 @@ function collides(obj1, obj2) {
          obj1.y + obj1.height > obj2.y;
 }
 
-// function writeScoreboard(){
-//   player1Scores.innerText = score.player1.toString();
-//   player2Scores.innerHTML = score.player2.toString();
-// }
 function changeScores(){
   player1Scores.innerText = player1.toString();
   player2Scores.innerText = player2.toString();
