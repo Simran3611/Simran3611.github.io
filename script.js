@@ -71,7 +71,7 @@ function collides(obj1, obj2) {
 // }
 function changeScores(){
   player1Scores.innerText = player1.toString();
-  player2Scores.innerHTML = player2.toString();
+  player2Scores.innerText = player2.toString();
 }
 
 // game loop

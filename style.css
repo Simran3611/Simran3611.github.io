@@ -13,7 +13,6 @@ body {
 
 .scoreboardDisplay {
   color: white;
-  /* font-family: 'Lato', sans-serif; */
   font-family: 'Courier New', Courier, monospace;
   flex-basis: 50%;
   text-align: center;
