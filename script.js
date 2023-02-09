@@ -11,7 +11,19 @@ const paddleHeight = grid * 5; // 80
 const maxPaddleY = canvas.height - grid - paddleHeight;
 
 var paddleSpeed = 6;
-var ballSpeed = 5;
+var ballSpeed = 4;
+
+function PaddleAI() {
+  if (ball.dx < 0) {
+    if (ball.y < leftPaddle.y + leftPaddle.height / 2) {
+      leftPaddle.dy = -paddleSpeed;
+    } else {
+      leftPaddle.dy = paddleSpeed;
+    }
+  } else {
+    leftPaddle.dy = 0;
+  }
+}
 
 const leftPaddle = {
   // start in the middle of the game on the left side
@@ -73,6 +85,7 @@ function displayEnd(){
     ball.y = canvas.height / 2;
   } else{
     ball.resetting = false;
+    document.body.innerHTML = "";
   }
 }
 
@@ -85,6 +98,7 @@ function changeScores(){
 function loop() {
   requestAnimationFrame(loop);
   context.clearRect(0,0,canvas.width,canvas.height);
+  PaddleAI();
 
   // move paddles by their velocity
   leftPaddle.y += leftPaddle.dy;
